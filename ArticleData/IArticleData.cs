@@ -15,6 +15,5 @@ namespace ArticleDatabaseConnector.ArticleData
 
         void DeleteArticle(Article article);
 
-        Article EditArticle(Article article); 
     }
 }
