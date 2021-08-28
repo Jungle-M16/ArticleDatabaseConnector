@@ -70,24 +70,22 @@ namespace ArticleDatabaseConnector.ArticleData
             new Article() { Id = Guid.NewGuid(), AuthorId = 1, Title = "Sed ante.", DatePublished = new DateTime(2020,09,08), Popularity = 63, Category = "Sports" },
             new Article() { Id = Guid.NewGuid(), AuthorId = 1, Title = "Curabitur at ipsum ac tellus semper interdum.", DatePublished = new DateTime(2021,02,26), Popularity = 58, Category = "Entertainment" },
         };
+     
         public Article AddArticle(Article article)
         {
-            throw new NotImplementedException();
+            article.Id = Guid.NewGuid();
+            articles.Add(article);
+            return article;
         }
 
         public void DeleteArticle(Article article)
         {
-            throw new NotImplementedException();
-        }
-
-        public Article EditArticle(Article article)
-        {
-            throw new NotImplementedException();
+            articles.Remove(article);
         }
 
         public Article GetArticle(Guid id)
         {
-            throw new NotImplementedException();
+            return articles.SingleOrDefault(x => x.Id == id);
         }
 
         public List<Article> GetArticles()
