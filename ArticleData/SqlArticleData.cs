@@ -20,11 +20,31 @@ namespace ArticleDatabaseConnector.ArticleData
             _ctx.SaveChanges();
             return article; 
         }
-
-        public void DeleteArticle(Article article)
+        public List<Article> GetArticlesByAuthor(int id)
         {
-            throw new NotImplementedException();
+            var articles = _ctx.Articles
+                .Where(x => x.AuthorId == id)
+                .OrderByDescending(y => y.Popularity)
+                .ToList();
+            return articles;
         }
+        public List<Author> GetAuthors()
+        {
+            var authors = _ctx.Authors.ToList();
+            return authors;
+        }
+        public List<Article> GetArticlesBySubjectType(string subject)
+        {
+            var articles = _ctx.Articles
+                .Where(x => x.Category == subject)
+                .OrderByDescending(y => y.Popularity)
+                .ToList();
+            return articles;
+        }
+        //public void DeleteArticle(Article article)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public Article GetArticle(Guid id)
         {

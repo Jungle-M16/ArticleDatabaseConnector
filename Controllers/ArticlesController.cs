@@ -17,7 +17,12 @@ namespace ArticleDatabaseConnector.Controllers
         {
             _articleData = articleData;
         }
-
+        [HttpGet]
+        [Route("api/[controller]/GetAuthors")]
+        public IActionResult GetAuthors()
+        {
+            return Ok(_articleData.GetAuthors());
+        }
         [HttpGet]
         [Route("api/[controller]")]
         public IActionResult GetArticles()
@@ -25,7 +30,7 @@ namespace ArticleDatabaseConnector.Controllers
             return Ok(_articleData.GetArticles());
         }
         [HttpGet]
-        [Route("api/[controller]/{id}")]
+        [Route("api/[controller]/GetArticle/{id}")]
         public IActionResult GetArticle(Guid id)
         {
             var article = _articleData.GetArticle(id);
@@ -35,25 +40,51 @@ namespace ArticleDatabaseConnector.Controllers
             }
             return NotFound($"The Article with Id: {id} was not found"); 
         }
-        [HttpPost]
-        [Route("api/[controller]")]
-        public IActionResult GetArticle(Article article)
+        [HttpGet]
+        [Route("api/[controller]/GetArticlesByAuthor/{id}")]
+        public IActionResult GetArticlesByAuthorId(int id)
         {
-            _articleData.AddArticle(article);
-
-            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + article.Id, article);
-        }
-        [HttpDelete]
-        [Route("api/[controller]/{id}")]
-        public IActionResult DeleteArticle(Guid id)
-        {
-            var article = _articleData.GetArticle(id);
-            if (article != null)
+            var articles = _articleData.GetArticlesByAuthor(id);
+    
+            if (articles != null)
             {
-                _articleData.DeleteArticle(article);
-                return Ok();
+                return Ok(articles);
             }
-            return NotFound($"The Article with Id: {id} was not found");
+            return NotFound($"The Author with Id: {id} was not found");
         }
+        [HttpGet]
+        [Route("api/[controller]/GetArticlesBySubjectType/{id}")]
+        public IActionResult GetArticlesBySubjctType(string subject)
+        {
+            var articles = _articleData.GetArticlesBySubjectType(subject);
+
+            if (articles != null)
+            {
+                return Ok(articles);
+            }
+            return NotFound($"The Author with subject: {subject} was not found");
+        }
+        //[HttpPost]
+        //[Route("api/[controller]")]
+        //public IActionResult GetArticle(Article article)
+        //{
+        //    _articleData.AddArticle(article);
+
+        //    return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + article.Id, article);
+        //}
+        // Unneccessary
+
+        //[HttpDelete]
+        //[Route("api/[controller]/{id}")]
+        //public IActionResult DeleteArticle(Guid id)
+        //{
+        //    var article = _articleData.GetArticle(id);
+        //    if (article != null)
+        //    {
+        //        _articleData.DeleteArticle(article);
+        //        return Ok();
+        //    }
+        //    return NotFound($"The Article with Id: {id} was not found");
+        //}
     }
 }

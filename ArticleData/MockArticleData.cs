@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ArticleDatabaseConnector.ArticleData
 {
-    public class MockArticleData : IArticleData
+    //DEPR: Class not being used anymore except maybe reference but still nah
+    //Thanks Mr. Mockie for your work before we hooked up the context
+    //Removed parent class to stop everyone from complaining about the breach of contract
+    public class MockArticleData 
     {
 
         private List<Author> authors = new List<Author>()
@@ -102,7 +105,10 @@ namespace ArticleDatabaseConnector.ArticleData
         {
             return articles.SingleOrDefault(x => x.Id == id);
         }
-
+        public List<Article> GetArticlesByAuthor(int id)
+        { 
+            return (List<Article>)articles.Where(x => x.AuthorId == id);
+        }
         public List<Article> GetArticles()
         {
             return articles;

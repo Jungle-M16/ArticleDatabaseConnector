@@ -9,11 +9,14 @@ namespace ArticleDatabaseConnector.ArticleData
 {
     public interface IArticleData
     {
+        List<Article> GetArticlesByAuthor(int id);
+        List<Article> GetArticlesBySubjectType(string subject);
         List<Article> GetArticles();
         Article GetArticle(Guid id);
-        Article AddArticle(Article article);
+        List<Author> GetAuthors();
+        //Article AddArticle(Article article);
 
-        void DeleteArticle(Article article);
+        //void DeleteArticle(Article article);
 
     }
 }
