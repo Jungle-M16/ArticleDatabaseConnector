@@ -53,7 +53,7 @@ namespace ArticleDatabaseConnector.Controllers
             return NotFound($"The Author with Id: {id} was not found");
         }
         [HttpGet]
-        [Route("api/[controller]/GetArticlesBySubjectType/{id}")]
+        [Route("api/[controller]/GetArticlesBySubjectType/{subject}")]
         public IActionResult GetArticlesBySubjctType(string subject)
         {
             var articles = _articleData.GetArticlesBySubjectType(subject);

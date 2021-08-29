@@ -29,6 +29,18 @@ namespace ArticleDatabaseConnector
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AnyOrigin", builder =>
+                {
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod();
+                });
+            });
+
+            // Configure
+ 
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -43,6 +55,7 @@ namespace ArticleDatabaseConnector
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("AnyOrigin");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
