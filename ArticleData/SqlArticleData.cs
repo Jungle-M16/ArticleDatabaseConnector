@@ -54,7 +54,9 @@ namespace ArticleDatabaseConnector.ArticleData
 
         public List<Article> GetArticles()
         {
-            return _ctx.Articles.ToList();
+            return _ctx.Articles
+                .OrderByDescending(y => y.Popularity)
+                .ToList();
         }
     }
 }
