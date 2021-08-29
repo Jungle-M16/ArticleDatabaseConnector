@@ -8,6 +8,21 @@ namespace ArticleDatabaseConnector.ArticleData
 {
     public class MockArticleData : IArticleData
     {
+
+        private List<Author> authors = new List<Author>()
+        {
+            new Author() { Id = 1,  Name = "Prinz Linacre"},
+            new Author() { Id = 2,  Name = "Karol Branford"},
+            new Author() { Id = 3,  Name = "Elga Ross"},
+            new Author() { Id = 4,  Name = "Ericka Fawdery"},
+            new Author() { Id = 5,  Name = "Mahmud Threadgould"},
+            new Author() { Id = 6,  Name = "Nanete Marwood"},
+            new Author() { Id = 7,  Name = "Emmaline Drews"},
+            new Author() { Id = 8,  Name = "Susan Downse"},
+            new Author() { Id = 9,  Name = "Wilmar Nehl"},
+            new Author() { Id = 10,  Name = "Jo ann Troubridge"}
+
+        };
         private List<Article> articles = new List<Article>()
         {
             new Article() { Id = Guid.NewGuid(), AuthorId = 9, Title = "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.", DatePublished = new DateTime(2021,04,23), Popularity = 43, Category = "Religion" },
