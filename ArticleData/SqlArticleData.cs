@@ -41,12 +41,16 @@ namespace ArticleDatabaseConnector.ArticleData
                 .ToList();
             return articles;
         }
-        //public void DeleteArticle(Article article)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Article GetLatestArticleBySubjectType(string subject)
+        {
+            var article = _ctx.Articles
+                .Where(x => x.Category == subject)
+                .OrderByDescending(y => y.DatePublished)
+                .FirstOrDefault();
+            return article;
+        }
 
-        public Article GetArticle(Guid id)
+    public Article GetArticle(Guid id)
         {
             var article = _ctx.Articles.Find(id);
             return article; 

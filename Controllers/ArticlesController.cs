@@ -64,6 +64,18 @@ namespace ArticleDatabaseConnector.Controllers
             }
             return NotFound($"The Author with subject: {subject} was not found");
         }
+        [HttpGet]
+        [Route("api/[controller]/GetLatestArticleBySubjectType/{subject}")]
+        public IActionResult GetLatestArticleBySubjctType(string subject)
+        {
+            var article = _articleData.GetLatestArticleBySubjectType(subject);
+
+            if (article != null)
+            {
+                return Ok(article);
+            }
+            return NotFound($"The Author with subject: {subject} was not found");
+        }
         //[HttpPost]
         //[Route("api/[controller]")]
         //public IActionResult GetArticle(Article article)

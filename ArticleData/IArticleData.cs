@@ -11,6 +11,7 @@ namespace ArticleDatabaseConnector.ArticleData
     {
         List<Article> GetArticlesByAuthor(int id);
         List<Article> GetArticlesBySubjectType(string subject);
+        Article GetLatestArticleBySubjectType(string subject);
         List<Article> GetArticles();
         Article GetArticle(Guid id);
         List<Author> GetAuthors();
