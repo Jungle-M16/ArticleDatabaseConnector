@@ -14,6 +14,11 @@ Change The Connection String in appsettings.json to reflect an actual SQL server
 
 Make sure you also Update-Database in your Nuget / Powershell / cmd to seed the data. 
 
+Also included is an API consumer application. 
+
+
+https://github.com/Jungle-M16/ArticleApiConsumer
+
 Best Regards, 
 
 Ari Björn Ólafsson 
